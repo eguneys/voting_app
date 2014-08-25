@@ -1,7 +1,9 @@
 define(['ember', 'ember-data'], function(Ember, DS) {
     var App = Ember.Application.create();
 
-    App.ApplicationAdapter = DS.FixtureAdapter.extend();
+    App.ApplicationAdapter = DS.RESTAdapter.extend({
+        namespace: 'api/v1'
+    });
     
     return App;
 });

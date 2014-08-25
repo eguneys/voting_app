@@ -240,7 +240,7 @@ gulp.task('wiredep', function() {
 });
 
 gulp.task('serve', ['build-dev'], function() {
-    $.nodemon({ script: 'config/server.js',
+    $.nodemon({ script: 'config/app.js',
                 ignore: [
                     'node_modules/*'
                 ],
