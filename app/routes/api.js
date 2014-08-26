@@ -1,9 +1,16 @@
-var async = require('async');
-var db = require('../models');
+var async = require('async'),
+    db = require('../models'),
+    bodyParser = require('body-parser');
 
 module.exports = function(express) {
 
     var router = express.Router();
+
+    router.use(bodyParser.urlencoded({
+        extended: false
+    }));
+
+    router.use(bodyParser.json());
     
     router.get('/polls', function(req, res) {
         db.Poll.findAll({
@@ -38,7 +45,7 @@ module.exports = function(express) {
     router.post('/votes', function(req, res) {
         var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-        //ip = Math.random();
+        ip = Math.random();
         
         var choice = req.body.vote.choice;
         

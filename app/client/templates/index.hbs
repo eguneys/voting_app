@@ -12,7 +12,7 @@
             {{#each choices}}
               <div class="row">
                 <div class="col-md-6">
-                  <button class="btn btn-info pull-right">
+                  <button class="btn btn-info pull-right" {{action 'vote' id}}>
                     <h4>{{text}}</h4>
                   </button>
                 </div>
@@ -34,6 +34,15 @@
           </div>
 
           <div {{bind-attr class="poll-results resultsHidden:hidden"}}>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="progress">
+                  {{#each pollChoices}}
+                    {{text}}:{{vote-percent}}
+                  {{/each}}
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-md-12 text-center">
                 <button class="btn btn-link" {{action hideResults}}>
