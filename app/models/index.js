@@ -5,10 +5,22 @@ var fs = require('fs'),
     sequelize = null,
     db = {};
 
-sequelize = new Sequelize('votes-app-db', null, null, {
-    dialect: 'sqlite',
-    storage: './db/development.sqlite'
-});
+if (process.env.HEROKU_POSTGRESQL_WHITE_URL) {
+    var match = process.env.HEROKU_POSTGRESQL_WHITE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
+
+    sequelize = new Sequelize(match[5], match[1], match[2], {
+        dialect: 'postgres',
+        protocol: 'postgres',
+        port: match[4],
+        host: match[3],
+        logging: true // false
+    });
+} else {
+    sequelize = new Sequelize('votes-app-db', null, null, {
+        dialect: 'sqlite',
+        storage: './db/development.sqlite'
+    });
+}
 
 fs.readdirSync(__dirname)
     .filter(function(file) {
