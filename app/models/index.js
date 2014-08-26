@@ -3,10 +3,11 @@ var fs = require('fs'),
     lodash = require('lodash'),
     Sequelize = require('sequelize'),
     sequelize = null,
-    db = {};
+    db = {},
+    HEROKU_POSTGRESQL_URL = process.env.HEROKU_POSTGRESQL_COBALT_URL;
 
-if (process.env.HEROKU_POSTGRESQL_WHITE_URL) {
-    var match = process.env.HEROKU_POSTGRESQL_WHITE_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
+if (HEROKU_POSTGRESQL_URL) {
+    var match = HEROKU_POSTGRESQL_URL.match(/postgres:\/\/([^:]+):([^@]+)@([^:]+):(\d+)\/(.+)/);
 
     sequelize = new Sequelize(match[5], match[1], match[2], {
         dialect: 'postgres',
