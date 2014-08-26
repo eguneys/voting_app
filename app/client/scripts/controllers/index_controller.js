@@ -5,9 +5,7 @@ define(['ember', 'app/app'], function(Ember, App) {
         pollChoices: function() {
             var choices = this.get('model.choices');
             
-            var totalVotes = choices.reduce(function(prev, item) {
-                return prev + item.get('count');
-            }, 0);
+            var totalVotes = this.get('totalVotes');
             
             choices.map(function(item) {
                 var votePercent = (item.get('count') / totalVotes) * 100;
@@ -15,6 +13,16 @@ define(['ember', 'app/app'], function(Ember, App) {
                 return item;
             });
             return choices;
+        }.property('model.choices'),
+
+        totalVotes: function() {
+            var choices = this.get('model.choices');
+            
+            var totalVotes = choices.reduce(function(prev, item) {
+                return prev + item.get('count');
+            }, 0);
+
+            return totalVotes;
         }.property('model.choices'),
         
         actions: {

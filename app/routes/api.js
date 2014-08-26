@@ -45,7 +45,7 @@ module.exports = function(express) {
     router.post('/votes', function(req, res) {
         var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-        ip = Math.random();
+        //ip = Math.random();
         
         var choice = req.body.vote.choice;
         
