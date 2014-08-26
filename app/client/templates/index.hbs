@@ -26,7 +26,7 @@
             {{/each}}
             <div class="row">
               <div class="col-md-12 text-center">
-                <button class="btn btn-link" {{action showResults}}>Show results
+                <button class="btn btn-link" {{action 'showResults'}}>Show results
                   <i class="fa fa-arrow-right"></i>
                 </button>
               </div>
@@ -35,17 +35,17 @@
 
           <div {{bind-attr class="poll-results resultsHidden:hidden"}}>
             <div class="row">
-              <div class="col-md-12">
-                <div class="progress">
+              <div class="col-md-8 col-md-offset-2 text-center">
                   {{#each pollChoices}}
-                    {{text}}:{{vote-percent}}
+                    <div class="progress">
+                      {{progress-bar text=text percent=vote-percent}}
+                    </div>
                   {{/each}}
-                </div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-12 text-center">
-                <button class="btn btn-link" {{action hideResults}}>
+                <button class="btn btn-link" {{action 'hideResults'}}>
                   <i class="fa fa-arrow-left"></i>
                   Back
                 </button>

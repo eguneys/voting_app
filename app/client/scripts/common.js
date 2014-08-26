@@ -9,6 +9,7 @@ requirejs.config({
         controllers: '../app/controllers',
         mixins: '../app/mixins',
         templates: '../../templates',
+        components: '../app/components',
         ember: 'ember/ember',
         jquery: 'jquery/dist/jquery',
         requirejs: 'requirejs/require',
