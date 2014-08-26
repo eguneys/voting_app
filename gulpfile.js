@@ -130,14 +130,6 @@ gulp.task('build-requirejs', ['build-scripts', 'build-styles'], function(cb) {
             {
                 name: 'app/common',
                 include: ['app/main']
-            },
-            {
-                name: 'routes/index_deps',
-                exclude: ['app/common']
-            },
-            {
-                name: 'routes/guides_deps',
-                exclude: ['app/common']
             }
         ]
     };
@@ -180,6 +172,8 @@ gulp.task('build-optimize', function (cb) {
 gulp.task('build', ['build-optimize'], function() {
     return gulp.src(paths.dev_dist + '/**/*').pipe($.size({title: 'build', gzip: true}));
 });
+
+gulp.task('default', ['build']);
 
 //---
 // Dev Tasks

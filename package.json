@@ -5,6 +5,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "scripts": {
+      "postinstall": "npm install -g bower && bower install &&  npm run build",
+      "build": "gulp",
+      "start": "node config/app",
+      "test": "gulp test"
+  },
   "repository": "eguneys/voting_app",
   "author": "Emre Guneyler",
   "license": "ISC",
